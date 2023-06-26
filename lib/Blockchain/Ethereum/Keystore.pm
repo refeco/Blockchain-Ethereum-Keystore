@@ -7,7 +7,7 @@ use warnings;
 use File::Slurp;
 use JSON::MaybeXS qw(decode_json);
 use Crypt::PBKDF2;
-use Crypt::ScryptKDF qw(scrypt_raw scrypt_hex);
+use Crypt::ScryptKDF qw(scrypt_raw);
 use Net::SSH::Perl::Cipher;
 
 my %cipher = (
@@ -75,10 +75,6 @@ sub _decode_kdf_scrypt {
 
     return $derived_key;
 }
-
-my $keystore = Blockchain::Ethereum::Keystore->new;
-use Data::Dumper;
-print Dumper unpack "H*", $keystore->key_from_file("/home/reginaldo/Documents/docs/documents/projects/flaw/key2.txt", "testpassword");
 
 1;
 
