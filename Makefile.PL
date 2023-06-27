@@ -27,11 +27,19 @@ my %WriteMakefileArgs = (
         'Test::More' => '0',
     },
     PREREQ_PM => {
-        #'ABC'              => '1.6',
-        #'Foo::Bar::Module' => '5.0401',
+        # enforces Crypt::PRNG for scrypt KDF generation
+        'Crypt::PRNG' => '0.078',
+        'Crypt::ScryptKDF' => '0.010',
+        'Crypt::PBKDF2' => '0.161520',
+        'Net::SSH::Perl' => '2.14',
+        'JSON::MaybeXS' => '1.004005',
+        'File::Slurp' => '9999.32',
     },
-    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'Blockchain-Ethereum-Keystore-*' },
+    dist => {
+        COMPRESS => 'gzip -9f',
+        SUFFIX   => 'gz',
+    },
+    clean => {FILES => 'Blockchain-Ethereum-Keystore-*'},
 );
 
 # Compatibility with old versions of ExtUtils::MakeMaker
