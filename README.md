@@ -1,50 +1,94 @@
-Blockchain-Ethereum-Keystore
+# perl-ethereum-keystore
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Ethereum keystore management utilities
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+# Table of contents
 
+- [Usage](#usage)
+- [Installation](#installation)
+- [Support and Documentation](#support-and-documentation)
+- [License and Copyright](#license-and-copyright)
 
-INSTALLATION
+# Usage
 
-To install this module, run the following commands:
+Generating a new address and writing it to a keyfile:
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+```perl
+    my $key = Blockchain::Ethereum::Keystore::Key->new;
+    # checksummed address
+    print $key->address->prefixed;
+    my $keyfile = Blockchain::ethereum::Keystore::Keyfile->new;
 
-SUPPORT AND DOCUMENTATION
+    $keyfile->import_key($key);
+    $keyfile->write_to_file("...");
+```
+
+Importing a keyfile and changing the password:
+
+```perl
+    my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
+    my $password = "old_password";
+    $keyfile->import_file("...", $password);
+    $keyfile->change_password($password, "newpassword");
+    $keyfile->write_to_file("...");
+```
+
+Signing a transaction:
+
+```perl
+    my $transaction = Blockchain::Ethereum::Transaction::EIP1559->new(
+        ...
+    );
+
+    my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
+    $keyfile->import_file("...");
+    $keyfile->private_key->sign_transaction($transaction);
+```
+
+Exporting a keyfile private key:
+
+```perl
+    my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
+    $keyfile->import_file("...");
+
+    # private key bytes
+    print $keyfile->private_key->export;
+```
+
+# Installation
+
+## cpanminus
+
+```
+cpanm Blockchain::Ethereum::Keystore
+```
+
+## make
+
+```
+perl Makefile.PL
+make
+make test
+make install
+```
+
+# Support and Documentation
 
 After installing, you can find documentation for this module with the
 perldoc command.
 
-    perldoc Blockchain::Ethereum::Keystore
+```
+perldoc Blockchain::Ethereum::Keystore
+```
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        https://rt.cpan.org/NoAuth/Bugs.html?Dist=Blockchain-Ethereum-Keystore
+- [Search CPAN](https://metacpan.org/release/Blockchain-Ethereum-Keystore)
 
-    CPAN Ratings
-        https://cpanratings.perl.org/d/Blockchain-Ethereum-Keystore
+# License and Copyright
 
-    Search CPAN
-        https://metacpan.org/release/Blockchain-Ethereum-Keystore
-
-
-LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by Reginaldo Costa.
+This software is Copyright (c) 2023 by REFECO.
 
 This is free software, licensed under:
 
-  The MIT (X11) License
-
+  [The MIT License](./LICENSE)
