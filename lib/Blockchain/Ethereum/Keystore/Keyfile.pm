@@ -145,7 +145,6 @@ class Blockchain::Ethereum::Keystore::Keyfile {
     method write_to_file ($file_path) {
 
         return write_file($file_path, $self->_json->canonical(1)->pretty->encode($self->_write_to_object));
-
     }
 
 };
