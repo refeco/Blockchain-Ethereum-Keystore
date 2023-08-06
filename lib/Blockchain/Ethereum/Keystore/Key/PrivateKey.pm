@@ -67,6 +67,8 @@ the function _sign that on the parent module returns only C<$r> and C<$s>,
 this version returns the C<$y_parity> as well, what simplifies signing
 the transaction.
 
+You don't want to use this directly, use instead L<Blockchain::Ethereum::Keystore::Key>
+
 =head1 METHODS
 
 =head2 _sign
