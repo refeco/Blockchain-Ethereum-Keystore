@@ -1,6 +1,7 @@
 use v5.26;
 use Object::Pad;
 
+package Blockchain::Ethereum::Keystore::Keyfile::KDF 0.001;
 class Blockchain::Ethereum::Keystore::Keyfile::KDF {
     use Crypt::PBKDF2;
     use Crypt::ScryptKDF qw(scrypt_raw);

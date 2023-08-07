@@ -1,6 +1,7 @@
 use v5.26;
 use Object::Pad;
 
+package Blockchain::Ethereum::Keystore::Address 0.001;
 class Blockchain::Ethereum::Keystore::Address {
     use Carp;
     use Digest::Keccak qw(keccak_256_hex);

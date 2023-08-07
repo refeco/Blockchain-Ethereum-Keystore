@@ -1,6 +1,7 @@
 use v5.26;
 use Object::Pad;
 
+package Blockchain::Ethereum::Keystore::Key::PrivateKey 0.001;
 class Blockchain::Ethereum::Keystore::Key::PrivateKey :isa(Crypt::Perl::ECDSA::PrivateKey) {
     use Carp;
 

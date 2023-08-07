@@ -1,6 +1,7 @@
 use v5.26;
 use Object::Pad;
 
+package Blockchain::Ethereum::Keystore::Key 0.001;
 class Blockchain::Ethereum::Keystore::Key {
     use Carp;
     use Crypt::PK::ECC;

@@ -1,6 +1,7 @@
 use v5.26;
 use Object::Pad ':experimental(init_expr)';
 
+package Blockchain::Ethereum::Keystore::Keyfile 0.001;
 class Blockchain::Ethereum::Keystore::Keyfile {
     use Carp;
     use File::Slurp;
