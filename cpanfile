@@ -1,4 +1,4 @@
-requires 'Blockchain::Ethereum::Transaction', '0.004';
+requires 'Blockchain::Ethereum::Transaction', '0.005';
 requires 'Object::Pad', '0.79';
 requires 'Digest::Keccak', '0.05';
 requires 'Crypt::PK::ECC', '0.078';
