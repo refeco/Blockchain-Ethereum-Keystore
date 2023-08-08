@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore 0.001;
+package Blockchain::Ethereum::Keystore 0.002;
 class Blockchain::Ethereum::Keystore;
 
 1;
@@ -15,14 +15,6 @@ __END__
 =head1 NAME
 
 Blockchain::Ethereum::Keystore - Ethereum keystorage utilities
-
-=head1 VERSION
-
-Version 0.001
-
-=cut
-
-our $VERSION = '0.001';
 
 =head1 SYNOPSIS
 
@@ -74,12 +66,6 @@ Reginaldo Costa, C<< <refeco at cpan.org> >>
 =head1 BUGS
 
 Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Blockchain::Ethereum::Keystore
 
 =head1 LICENSE AND COPYRIGHT
 

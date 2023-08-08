@@ -1,40 +1,39 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Address 0.001;
-class Blockchain::Ethereum::Keystore::Address {
-    use Carp;
-    use Digest::Keccak qw(keccak_256_hex);
+package Blockchain::Ethereum::Keystore::Address 0.002;
+class Blockchain::Ethereum::Keystore::Address;
 
-    field $address :reader :writer :param;
+use Carp;
+use Digest::Keccak qw(keccak_256_hex);
 
-    ADJUST {
+field $address :reader :writer :param;
 
-        my $unprefixed = $self->address =~ s/^0x//r;
+ADJUST {
 
-        croak 'Invalid address format' unless length($unprefixed) == 40;
+    my $unprefixed = $self->address =~ s/^0x//r;
 
-        my @hashed_chars      = split //, keccak_256_hex(lc $unprefixed);
-        my @address_chars     = split //, $unprefixed;
-        my $checksummed_chars = '';
+    croak 'Invalid address format' unless length($unprefixed) == 40;
 
-        $checksummed_chars .= hex $hashed_chars[$_] >= 8 ? uc $address_chars[$_] : lc $address_chars[$_] for 0 .. length($unprefixed) - 1;
+    my @hashed_chars      = split //, keccak_256_hex(lc $unprefixed);
+    my @address_chars     = split //, $unprefixed;
+    my $checksummed_chars = '';
 
-        $self->set_address($checksummed_chars);
-    }
+    $checksummed_chars .= hex $hashed_chars[$_] >= 8 ? uc $address_chars[$_] : lc $address_chars[$_] for 0 .. length($unprefixed) - 1;
 
-    method unprefixed {
+    $self->set_address($checksummed_chars);
+}
 
-        my $unprefixed = $self->address =~ s/^0x//r;
-        return $unprefixed;
-    }
+method unprefixed {
 
-    method prefixed {
+    my $unprefixed = $self->address =~ s/^0x//r;
+    return $unprefixed;
+}
 
-        return $self->address if $self->address =~ /^0x/;
-        return '0x' . $self->address;
-    }
+method prefixed {
 
-};
+    return $self->address if $self->address =~ /^0x/;
+    return '0x' . $self->address;
+}
 
 1;
