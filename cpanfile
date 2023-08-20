@@ -9,3 +9,4 @@ requires 'Crypt::PBKDF2', '0.161520';
 requires 'Net::SSH::Perl', '2.14';
 requires 'JSON::MaybeXS', '1.004005';
 requires 'File::Slurp', '9999.32';
+requires 'Bitcoin::Crypto', '1.008';

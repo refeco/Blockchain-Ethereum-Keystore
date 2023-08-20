@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore 0.002;
+package Blockchain::Ethereum::Keystore 0.003;
 class Blockchain::Ethereum::Keystore;
 
 1;
@@ -26,7 +26,7 @@ Generating a new address and writing it to a keyfile:
 
     my $key = Blockchain::Ethereum::Keystore::Key->new;
     # checksummed address
-    print $key->address->prefixed;
+    print $key->address;
     my $keyfile = Blockchain::ethereum::Keystore::Keyfile->new;
 
     $keyfile->import_key($key);

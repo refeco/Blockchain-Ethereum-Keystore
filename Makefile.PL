@@ -38,6 +38,7 @@ my %WriteMakefileArgs = (
         'Net::SSH::Perl'                    => '2.14',
         'JSON::MaybeXS'                     => '1.004005',
         'File::Slurp'                       => '9999.32',
+        'Bitcoin::Crypto'                   => '1.008',
     },
     dist => {
         COMPRESS => 'gzip -9f',

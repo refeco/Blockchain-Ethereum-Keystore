@@ -16,7 +16,7 @@ Generating a new address and writing it to a keyfile:
 ```perl
     my $key = Blockchain::Ethereum::Keystore::Key->new;
     # checksummed address
-    print $key->address->prefixed;
+    print $key->address;
     my $keyfile = Blockchain::ethereum::Keystore::Keyfile->new;
 
     $keyfile->import_key($key);
