@@ -49,7 +49,7 @@ ADJUST {
     }
 }
 
-method deriv_key ($index, $account = 0, $purpose = 44, $coin_type = 60, $change = 0) {
+method derive_key ($index, $account = 0, $purpose = 44, $coin_type = 60, $change = 0) {
 
     my $path = Bitcoin::Crypto::BIP44->new(
         index     => $index,

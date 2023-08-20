@@ -18,6 +18,7 @@ subtest 'checksum' => sub {
     for my $address (@checksummed_addresses) {
         my $checksummed = Blockchain::Ethereum::Keystore::Address->new(address => lc $address);
         is $checksummed, $address, "valid address checksum for " . $checksummed;
+        is $checksummed->no_prefix, $address =~ s/^0x//r, "valid address checksum for " . $checksummed->no_prefix;
     }
 };
 

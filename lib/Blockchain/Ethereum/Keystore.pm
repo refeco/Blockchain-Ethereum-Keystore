@@ -33,6 +33,13 @@ Generating a new address and writing it to a keyfile:
     $keyfile->write_to_file("...");
     ...
 
+Generating a new seed and derivating new keys (BIP44):
+
+    my $seed = Blockchain::Ethereum::Keystore::Seed->new;
+    my $key = $seed->derive_key(0);
+    print $key->address;
+    ...
+
 Importing a keyfile and changing the password:
 
     my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
