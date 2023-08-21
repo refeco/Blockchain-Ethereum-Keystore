@@ -1,5 +1,6 @@
 Revision history for Blockchain-Ethereum-Keystore
-
+0.003
+    - Seed HD wallet support
 0.002
     - OP recommended file layout
 0.001

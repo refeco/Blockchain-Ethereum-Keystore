@@ -1,8 +1,8 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Key::PrivateKey 0.002;
-class Blockchain::Ethereum::Keystore::Key::PrivateKey
+package Blockchain::Ethereum::Keystore::Key::PKUtil 0.003;
+class Blockchain::Ethereum::Keystore::Key::PKUtil
     :isa(Crypt::Perl::ECDSA::PrivateKey);
 
 =encoding utf8
