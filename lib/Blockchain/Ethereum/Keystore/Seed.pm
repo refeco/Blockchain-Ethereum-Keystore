@@ -26,8 +26,6 @@ use Crypt::PRNG     qw(random_bytes);
 use Bitcoin::Crypto qw(btc_extprv);
 
 use Blockchain::Ethereum::Keystore::Key;
-use Blockchain::Ethereum::Keystore::Key::PKUtil;
-use Blockchain::Ethereum::Keystore::Address;
 
 field $seed :reader :writer :param     //= undef;
 field $mnemonic :reader :writer :param //= undef;
