@@ -68,8 +68,6 @@ self
 
 method sign_transaction ($transaction) {
 
-    require Blockchain::Ethereum::Transaction;
-
     croak "transaction must be a reference from Blockchain::Ethereum::Transaction"
         unless ref($transaction) =~ /^\QBlockchain::Ethereum::Transaction/;
 
