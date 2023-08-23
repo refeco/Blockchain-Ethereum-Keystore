@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad ':experimental(init_expr)';
 
-package Blockchain::Ethereum::Keystore::Keyfile 0.003;
+package Blockchain::Ethereum::Keystore::Keyfile 0.004;
 class Blockchain::Ethereum::Keystore::Keyfile;
 
 =encoding utf8

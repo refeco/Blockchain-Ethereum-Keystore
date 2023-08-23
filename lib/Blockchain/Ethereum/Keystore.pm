@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore 0.003;
+package Blockchain::Ethereum::Keystore 0.004;
 class Blockchain::Ethereum::Keystore;
 
 1;
