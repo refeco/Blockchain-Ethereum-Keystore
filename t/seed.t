@@ -16,8 +16,9 @@ subtest "mnemonic" => sub {
 };
 
 subtest "seed" => sub {
-    my $vseed = pack "H*", "2822943239a891aa712b4b4c3ac5667c57d789b9606cb200ebd03cb4fe1be39a9eb8853154429c6e7c3ba958faaa5618b0ffcebca14d063db99d52716e1970fe";
-    my $seed  = Blockchain::Ethereum::Keystore::Seed->new(seed => $vseed);
+    my $vseed = pack "H*",
+        "2822943239a891aa712b4b4c3ac5667c57d789b9606cb200ebd03cb4fe1be39a9eb8853154429c6e7c3ba958faaa5618b0ffcebca14d063db99d52716e1970fe";
+    my $seed = Blockchain::Ethereum::Keystore::Seed->new(seed => $vseed);
 
     is $seed->derive_key(0)->address,   '0xEE7df9e883cDD6ed5686E70E684a9D7dd31Cf090';
     is $seed->derive_key(100)->address, '0xcAccf9f7F73a64FCcD6cf35974E4E55C1a4585cC';
@@ -25,9 +26,8 @@ subtest "seed" => sub {
 };
 
 subtest "new seed" => sub {
-    my $seed  = Blockchain::Ethereum::Keystore::Seed->new();
+    my $seed = Blockchain::Ethereum::Keystore::Seed->new();
     ok $seed->derive_key(0)->address;
 };
-
 
 done_testing();

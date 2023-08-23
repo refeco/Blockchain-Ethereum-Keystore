@@ -1,5 +1,5 @@
 requires 'Object::Pad', '0.79';
-requires 'Digest::Keccak', '0.05';
+requires 'Crypt::Digest::Keccak256', '0.078';
 requires 'Crypt::PK::ECC', '0.078';
 requires 'Crypt::PRNG', '0.078';
 requires 'Crypt::KeyDerivation', '0.078';

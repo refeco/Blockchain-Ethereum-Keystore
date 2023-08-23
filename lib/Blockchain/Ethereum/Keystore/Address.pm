@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Address 0.003;
+package Blockchain::Ethereum::Keystore::Address 0.004;
 class Blockchain::Ethereum::Keystore::Address;
 
 =encoding utf8
@@ -21,7 +21,7 @@ Address utilities
 =cut
 
 use Carp;
-use Digest::Keccak qw(keccak_256_hex);
+use Crypt::Digest::Keccak256 qw(keccak256_hex);
 
 field $address :reader :writer :param;
 
@@ -31,7 +31,7 @@ ADJUST {
 
     croak 'Invalid address format' unless length($unprefixed) == 40;
 
-    my @hashed_chars      = split //, keccak_256_hex(lc $unprefixed);
+    my @hashed_chars      = split //, keccak256_hex(lc $unprefixed);
     my @address_chars     = split //, $unprefixed;
     my $checksummed_chars = '';
 
