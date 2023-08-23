@@ -26,8 +26,8 @@ use Carp;
 use Crypt::PK::ECC;
 use Crypt::Perl::ECDSA::Parse;
 use Crypt::Perl::ECDSA::Utils;
-use Digest::Keccak qw(keccak_256);
-use Crypt::PRNG    qw(random_bytes);
+use Crypt::Digest::Keccak256 qw(keccak256);
+use Crypt::PRNG              qw(random_bytes);
 
 use Blockchain::Ethereum::Keystore::Key::PKUtil;
 use Blockchain::Ethereum::Keystore::Address;
@@ -103,7 +103,7 @@ method address {
     my ($x, $y) = Crypt::Perl::ECDSA::Utils::split_G_or_public($self->_ecc_handler->_decompress_public_point);
 
     # address is the hash of the concatenated value of x and y
-    my $address     = substr(keccak_256($x . $y), -20);
+    my $address     = substr(keccak256($x . $y), -20);
     my $hex_address = unpack("H*", $address);
 
     return Blockchain::Ethereum::Keystore::Address->new(address => "0x$hex_address");

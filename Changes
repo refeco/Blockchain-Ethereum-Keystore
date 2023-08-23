@@ -1,4 +1,7 @@
 Revision history for Blockchain-Ethereum-Keystore
+0.004
+    - Fix dependency list
+    - Fix tests
 0.003
     - Seed HD wallet support
 0.002
