@@ -1,4 +1,6 @@
 Revision history for Blockchain-Ethereum-Keystore
+0.005
+    - Fix installation: incorrect CryptX version
 0.004
     - Fix dependency list
     - Fix tests
