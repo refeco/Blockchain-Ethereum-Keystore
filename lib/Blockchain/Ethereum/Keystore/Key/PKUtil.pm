@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Key::PKUtil 0.004;
+package Blockchain::Ethereum::Keystore::Key::PKUtil 0.005;
 class Blockchain::Ethereum::Keystore::Key::PKUtil
     :isa(Crypt::Perl::ECDSA::PrivateKey);
 

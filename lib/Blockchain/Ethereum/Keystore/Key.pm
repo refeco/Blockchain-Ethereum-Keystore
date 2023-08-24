@@ -1,7 +1,7 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Key 0.004;
+package Blockchain::Ethereum::Keystore::Key 0.005;
 class Blockchain::Ethereum::Keystore::Key;
 
 =encoding utf8

@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     },
     PREREQ_PM => {
         'Object::Pad'              => '0.79',
-        'Crypt::Digest::Keccak256' => '0.78',
+        'Crypt::Digest::Keccak256' => '0.078',
         'Crypt::PK::ECC'           => '0.078',
         'Crypt::PRNG'              => '0.078',
         'Crypt::KeyDerivation'     => '0.078',
