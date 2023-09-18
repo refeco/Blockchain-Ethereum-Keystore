@@ -1,4 +1,6 @@
-Revision history for Blockchain-Ethereum-Keystore
+{{$NEXT}}
+    [Improvements]
+    - Add Dist::Zilla
 0.005
     - Fix installation: incorrect CryptX version
 0.004

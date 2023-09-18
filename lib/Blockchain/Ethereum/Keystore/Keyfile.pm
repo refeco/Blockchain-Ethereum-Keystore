@@ -1,20 +1,22 @@
 use v5.26;
 use Object::Pad ':experimental(init_expr)';
 
-package Blockchain::Ethereum::Keystore::Keyfile 0.005;
+package Blockchain::Ethereum::Keystore::Keyfile;
 class Blockchain::Ethereum::Keystore::Keyfile;
 
-=encoding utf8
+# AUTHORITY
+# VERSION
 
-=head1 NAME
+=head1 OVERVIEW
 
-Blockchain::Ethereum::Keystore::Keyfile - Ethereum Keyfile abstraction
+This is an Ethereum keyfile abstraction that provides a way of change/read the
+keyfile information.
+
+Currently only supports version 3 keyfiles.
 
 =head1 SYNOPSIS
 
-Ethereum keyfile abstraction
-
-Currently only supports read and write for keyfile v3
+...
 
 =cut
 
@@ -38,13 +40,9 @@ field $private_key :reader :writer;
 
 field $_json :reader(_json) = JSON::MaybeXS->new(utf8 => 1);
 
-=head2 import_file
+=method import_file
 
 Import a v3 keyfile
-
-Usage:
-
-    import_file($file_path) -> $self
 
 =over 4
 
@@ -101,13 +99,9 @@ method _from_v3 ($object, $password) {
     return $self;
 }
 
-=head2 change_password
+=method change_password
 
 Change the imported keyfile password
-
-Usage:
-
-    change_password($old_password, $new_password) -> $self
 
 =over 4
 
@@ -140,13 +134,9 @@ method _private_key ($password) {
     return Blockchain::Ethereum::Keystore::Key->new(private_key => $key);
 }
 
-=head2 import_key
+=method import_key
 
 Import a L<Blockchain::Ethereum::keystore::Key>
-
-Usage:
-
-    import_key($keyfile) -> $self
 
 =over 4
 
@@ -214,13 +204,9 @@ method _write_to_object {
     return $file;
 }
 
-=head2 write_to_file
+=method write_to_file
 
 Write the imported keyfile/private_key to a keyfile in the file system
-
-Usage:
-
-    write_to_file($file_path) -> $self
 
 =over 4
 
@@ -238,23 +224,3 @@ method write_to_file ($file_path) {
 }
 
 1;
-
-__END__
-
-=head1 AUTHOR
-
-Reginaldo Costa, C<< <refeco at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by REFECO.
-
-This is free software, licensed under:
-
-  The MIT License
-
-=cut

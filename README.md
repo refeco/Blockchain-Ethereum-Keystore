@@ -1,102 +1,88 @@
-# perl-ethereum-keystore
+# NAME
 
-Ethereum keystore management utilities
+Blockchain::Ethereum::Keystore - comprehensive Ethereum wallet management utilities
 
-# Table of contents
+# VERSION
 
-- [Usage](#usage)
-- [Installation](#installation)
-- [Support and Documentation](#support-and-documentation)
-- [License and Copyright](#license-and-copyright)
+version 0.006
 
-# Usage
+# SYNOPSIS
 
 Generating a new address and writing it to a keyfile:
 
 ```perl
-    my $key = Blockchain::Ethereum::Keystore::Key->new;
-    # checksummed address
-    print $key->address;
-    my $keyfile = Blockchain::ethereum::Keystore::Keyfile->new;
+my $key = Blockchain::Ethereum::Keystore::Key->new;
+# checksummed address
+print $key->address;
+my $keyfile = Blockchain::ethereum::Keystore::Keyfile->new;
 
-    $keyfile->import_key($key);
-    $keyfile->write_to_file("...");
+$keyfile->import_key($key);
+$keyfile->write_to_file("...");
+...
 ```
 
 Generating a new seed and derivating new keys (BIP44):
 
 ```perl
-    my $seed = Blockchain::Ethereum::Keystore::Seed->new;
-    my $key = $seed->derive_key(0);
-    print $key->address;
+my $seed = Blockchain::Ethereum::Keystore::Seed->new;
+my $key = $seed->derive_key(0);
+print $key->address;
+...
 ```
 
 Importing a keyfile and changing the password:
 
 ```perl
-    my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
-    my $password = "old_password";
-    $keyfile->import_file("...", $password);
-    $keyfile->change_password($password, "newpassword");
-    $keyfile->write_to_file("...");
+my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
+my $password = "old_password";
+$keyfile->import_file("...", $password);
+$keyfile->change_password($password, "newpassword");
+$keyfile->write_to_file("...");
 ```
 
 Signing a transaction:
 
 ```perl
-    my $transaction = Blockchain::Ethereum::Transaction::EIP1559->new(
-        ...
-    );
+my $transaction = Blockchain::Ethereum::Transaction::EIP1559->new(
+    ...
+);
 
-    my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
-    $keyfile->import_file("...");
-    $keyfile->private_key->sign_transaction($transaction);
+my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
+$keyfile->import_file("...");
+$keyfile->private_key->sign_transaction($transaction);
 ```
 
-Exporting a keyfile private key:
+Export private key:
 
 ```perl
-    my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
-    $keyfile->import_file("...");
+my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
+$keyfile->import_file("...");
 
-    # private key bytes
-    print $keyfile->private_key->export;
+# private key bytes
+print $keyfile->private_key->export;
 ```
 
-# Installation
+# OVERVIEW
 
-## cpanminus
+This module offers comprehensive Ethereum wallet management utilities.
 
-```
-cpanm Blockchain::Ethereum::Keystore
-```
+Core functionalities:
 
-## make
+- Manage Ethereum keyfiles, facilitating easy import, export, and password change.
+- Sign [Blockchain::Ethereum::Transaction](https://metacpan.org/pod/Blockchain%3A%3AEthereum%3A%3ATransaction) transactions.
+- Private key and seed generation through [Crypt::PRNG](https://metacpan.org/pod/Crypt%3A%3APRNG)
+- Support for BIP44 for hierarchical deterministic wallets and key derivation.
 
-```
-perl Makefile.PL
-make
-make test
-make install
-```
+# AUTHOR
 
-# Support and Documentation
+Reginaldo Costa <refeco@cpan.org>
 
-After installing, you can find documentation for this module with the
-perldoc command.
-
-```
-perldoc Blockchain::Ethereum::Keystore
-```
-
-You can also look for information at:
-
-- [Search CPAN](https://metacpan.org/release/Blockchain-Ethereum-Keystore)
-
-# License and Copyright
+# COPYRIGHT AND LICENSE
 
 This software is Copyright (c) 2023 by REFECO.
 
 This is free software, licensed under:
 
-  [The MIT License](./LICENSE)
+```
+The MIT (X11) License
+```
