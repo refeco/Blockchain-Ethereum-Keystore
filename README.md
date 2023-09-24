@@ -1,6 +1,6 @@
 # NAME
 
-Blockchain::Ethereum::Keystore - comprehensive Ethereum wallet management utilities
+Blockchain::Ethereum::Keystore - Ethereum wallet management utilities
 
 # VERSION
 
@@ -64,7 +64,7 @@ print $keyfile->private_key->export;
 
 # OVERVIEW
 
-This module offers comprehensive Ethereum wallet management utilities.
+This module provides a collection of Ethereum wallet management utilities.
 
 Core functionalities:
 

@@ -7,7 +7,7 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "comprehensive Ethereum wallet management utilities",
+  "ABSTRACT" => "Ethereum wallet management utilities",
   "AUTHOR" => "Reginaldo Costa <refeco\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0

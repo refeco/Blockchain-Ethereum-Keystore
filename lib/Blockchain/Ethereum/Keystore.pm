@@ -1,6 +1,6 @@
 use v5.26;
 use Object::Pad;
-# ABSTRACT: comprehensive Ethereum wallet management utilities
+# ABSTRACT: Ethereum wallet management utilities
 
 package Blockchain::Ethereum::Keystore;
 class Blockchain::Ethereum::Keystore;
@@ -10,7 +10,7 @@ class Blockchain::Ethereum::Keystore;
 
 =head1 OVERVIEW
 
-This module offers comprehensive Ethereum wallet management utilities.
+This module provides a collection of Ethereum wallet management utilities.
 
 Core functionalities:
 

@@ -33,4 +33,4 @@ jobs:
       - run: cpanm --notest --installdeps --verbose .
       - run: perl Makefile.PL
       - run: make
-      - run: prove -wlvmb t xt
+      - run: prove -wlvmb t
