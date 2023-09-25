@@ -16,7 +16,7 @@ Core functionalities:
 
 =over 4
 
-=item * Manage Ethereum keyfiles, facilitating easy import, export, and password change.
+=item * Manage Ethereum keyfiles, facilitating import, export, and password change.
 
 =item * Sign L<Blockchain::Ethereum::Transaction> transactions.
 
