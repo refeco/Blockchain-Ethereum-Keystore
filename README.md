@@ -68,7 +68,7 @@ This module provides a collection of Ethereum wallet management utilities.
 
 Core functionalities:
 
-- Manage Ethereum keyfiles, facilitating easy import, export, and password change.
+- Manage Ethereum keyfiles, facilitating import, export, and password change.
 - Sign [Blockchain::Ethereum::Transaction](https://metacpan.org/pod/Blockchain%3A%3AEthereum%3A%3ATransaction) transactions.
 - Private key and seed generation through [Crypt::PRNG](https://metacpan.org/pod/Crypt%3A%3APRNG)
 - Support for BIP44 for hierarchical deterministic wallets and key derivation.

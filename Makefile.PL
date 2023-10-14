@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-
+use 5.026000;
 
 use ExtUtils::MakeMaker;
 
@@ -14,6 +14,7 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Blockchain-Ethereum-Keystore",
   "LICENSE" => "mit",
+  "MIN_PERL_VERSION" => "5.026000",
   "NAME" => "Blockchain::Ethereum::Keystore",
   "PREREQ_PM" => {
     "Bitcoin::Crypto" => "1.008",
