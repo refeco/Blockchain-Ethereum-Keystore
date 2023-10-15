@@ -4,7 +4,7 @@ Blockchain::Ethereum::Keystore - Ethereum wallet management utilities
 
 # VERSION
 
-version 0.006
+version 0.007
 
 # SYNOPSIS
 
