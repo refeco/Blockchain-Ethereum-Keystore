@@ -1,22 +1,24 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Address 0.005;
+package Blockchain::Ethereum::Keystore::Address;
 class Blockchain::Ethereum::Keystore::Address;
 
-=encoding utf8
-
-=head1 NAME
-
-Blockchain::Ethereum::Keystore::Address
+# AUTHORITY
+# VERSION
 
 =head1 SYNOPSIS
 
-Address utilities
+Import an existing address:
 
     my $address = Blockchain::Ethereum::Address->new(0x...);
+    # print checksummed address
     print $address;
-    ...
+
+Generate a new address:
+
+    my $key = Blockchain::Ethereum::Key->new;
+    my $address = $key->address;
 
 =cut
 
@@ -40,6 +42,12 @@ ADJUST {
     $self->set_address($checksummed_chars);
 }
 
+=method no_prefix
+
+Returns the checksummed address without the 0x prefix
+
+=cut
+
 method no_prefix {
 
     my $unprefixed = $self->address =~ s/^0x//r;
@@ -50,6 +58,14 @@ use overload
     fallback => 1,
     '""'     => \&to_string;
 
+=method to_string
+
+Returns the checksummed 0x prefixed address
+
+This function will be called as the default stringification method
+
+=cut
+
 method to_string {
 
     return $self->address if $self->address =~ /^0x/;
@@ -57,24 +73,3 @@ method to_string {
 }
 
 1;
-
-__END__
-
-=head1 AUTHOR
-
-Reginaldo Costa, C<< <refeco at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by REFECO.
-
-This is free software, licensed under:
-
-  The MIT License
-
-=cut
-

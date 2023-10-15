@@ -1,24 +1,29 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Key 0.005;
+package Blockchain::Ethereum::Keystore::Key;
 class Blockchain::Ethereum::Keystore::Key;
 
-=encoding utf8
+# AUTHORITY
+# VERSION
 
-=head1 NAME
+=head1 OVERVIEW
 
-Blockchain::Ethereum::Keystore::Key - Private key abstraction
-
-=head1 SYNOPSIS
-
-Private key abstraction
+This is a private key abstraction
 
 If instantiated without a private key, this module uses L<Crypt::PRNG> for the random key generation
 
+=head1 SYNOPSIS
+
+Generate a new key:
+
     my $key = Blockchain::Ethereum::Key->new;
-    $key->sign_transaction($transaction);
-    ...
+    $key->sign_transaction($transaction); # Blockchain::Ethereum::Transaction
+
+Import existent key:
+
+    my $key = Blockchain::Ethereum::Key->new(private_key => $private_key); # private key bytes
+    $key->sign_transaction($transaction); # Blockchain::Ethereum::Transaction
 
 =cut
 
@@ -48,13 +53,9 @@ ADJUST {
 
 }
 
-=head2 sign_transaction
+=method sign_transaction
 
 Sign a L<Blockchain::Ethereum::Transaction> object
-
-Usage:
-
-    sign_transaction($transaction) -> $$transaction
 
 =over 4
 
@@ -82,13 +83,9 @@ method sign_transaction ($transaction) {
     return $transaction;
 }
 
-=head2 address
+=method address
 
 Export the L<Blockchain::Ethereum::Keystore::Address> from the imported/generated private key
-
-Usage:
-
-    address() -> L<Blockchain::Ethereum::Keystore::Address>
 
 =over 4
 
@@ -109,13 +106,9 @@ method address {
     return Blockchain::Ethereum::Keystore::Address->new(address => "0x$hex_address");
 }
 
-=head2 export
+=method export
 
-Export the private key bytes
-
-Usage:
-
-    export() -> private key bytes
+Export the source/new private key
 
 =over 4
 
@@ -131,23 +124,3 @@ method export {
 }
 
 1;
-
-__END__
-
-=head1 AUTHOR
-
-Reginaldo Costa, C<< <refeco at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by REFECO.
-
-This is free software, licensed under:
-
-  The MIT License
-
-=cut

@@ -1,4 +1,10 @@
-Revision history for Blockchain-Ethereum-Keystore
+{{$NEXT}}
+
+0.007     2023-10-14 22:30:36-03:00 America/Sao_Paulo
+    - MAKEFILE.SKIP
+0.006     2023-10-14 21:12:23-03:00 America/Sao_Paulo
+    [Improvements]
+    - Add Dist::Zilla
 0.005
     - Fix installation: incorrect CryptX version
 0.004

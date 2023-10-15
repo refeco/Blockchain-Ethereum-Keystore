@@ -1,13 +1,14 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Key::PKUtil 0.005;
+package Blockchain::Ethereum::Keystore::Key::PKUtil;
 class Blockchain::Ethereum::Keystore::Key::PKUtil
     :isa(Crypt::Perl::ECDSA::PrivateKey);
 
-=encoding utf8
+# AUTHORITY
+# VERSION
 
-=head1 SYNOPSIS
+=head1 OVERVIEW
 
 This is a child for L<Crypt::Perl::ECDSA::PrivateKey> to overwrite
 the function _sign that on the parent module returns only C<$r> and C<$s>,
@@ -20,13 +21,9 @@ You don't want to use this directly, use instead L<Blockchain::Ethereum::Keystor
 
 use Carp;
 
-=head2 _sign
+=method _sign
 
 Overwrites L<Crypt::Perl::ECDSA::PrivateKey> adding the y-parity to the response
-
-Usage:
-
-    _sign($rlp_encoded_transaction) -> (Math::BigInt $r, Math::BigInt $s, $v)
 
 =over 4
 
@@ -89,23 +86,3 @@ method _sign ($message) {
 }
 
 1;
-
-__END__
-
-=head1 AUTHOR
-
-Reginaldo Costa, C<< <refeco at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by REFECO.
-
-This is free software, licensed under:
-
-  The MIT License
-
-=cut

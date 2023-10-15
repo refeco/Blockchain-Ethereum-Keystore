@@ -1,23 +1,32 @@
 use v5.26;
 use Object::Pad;
 
-package Blockchain::Ethereum::Keystore::Seed 0.005;
+package Blockchain::Ethereum::Keystore::Seed;
 class Blockchain::Ethereum::Keystore::Seed;
 
-=encoding utf8
+# AUTHORITY
+# VERSION
 
-=head1 NAME
-
-Blockchain::Ethereum::Keystore::Seed
-
-=head1 SYNOPSIS
+=head1 OVERVIEW
 
 If instantiated without a seed or mnemonic, this module uses L<Crypt::PRNG> for the random seed generation
 
+=head1 SYNOPSIS
+
+Creating a new seed and derivating the key from it:
+
     my $seed = Blockchain::Ethereum::Seed->new;
-    my $key = $seed->deriv_key(2);
+    my $key = $seed->deriv_key(2); # Blockchain::Ethereum::Keystore::Key
     print $key->address;
-    ...
+
+Importing a mnemonic:
+
+    my $seed = Blockchain::Ethereum::Seed->new(mnemonic => 'your mnemonic here');
+
+Importing seed bytes:
+
+    my $hex_seed = '...';
+    my $seed = Blockchain::Ethereum::Seed->new(seed => pack("H*", $hex_seed));
 
 =cut
 
@@ -47,6 +56,26 @@ ADJUST {
     }
 }
 
+=method deriv_key
+
+Derivates a L<Blockchain::Ethereum::Keystore::Key> for the given index
+
+=over 4
+
+=item * C<$index> key index
+
+=item * C<$account> [optional, default 0] account index
+
+=item * C<$purpose> [optional, default 44] improvement proposal
+
+=item * C<$coin_type> [optional, default 60] coin type code
+
+=back
+
+L<Blockchain::Ethereum::Keystore::Key>
+
+=cut
+
 method derive_key ($index, $account = 0, $purpose = 44, $coin_type = 60, $change = 0) {
 
     my $path = Bitcoin::Crypto::BIP44->new(
@@ -65,24 +94,3 @@ method derive_key ($index, $account = 0, $purpose = 44, $coin_type = 60, $change
 }
 
 1;
-
-__END__
-
-=head1 AUTHOR
-
-Reginaldo Costa, C<< <refeco at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by REFECO.
-
-This is free software, licensed under:
-
-  The MIT License
-
-=cut
-

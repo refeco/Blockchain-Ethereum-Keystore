@@ -1,26 +1,32 @@
 use v5.26;
 use Object::Pad;
+# ABSTRACT: Ethereum wallet management utilities
 
-package Blockchain::Ethereum::Keystore 0.005;
+package Blockchain::Ethereum::Keystore;
 class Blockchain::Ethereum::Keystore;
 
-1;
+# AUTHORITY
+# VERSION
 
-__END__
+=head1 OVERVIEW
 
-=pod
+This module provides a collection of Ethereum wallet management utilities.
 
-=encoding UTF-8
+Core functionalities:
 
-=head1 NAME
+=over 4
 
-Blockchain::Ethereum::Keystore - Ethereum keystorage utilities
+=item * Manage Ethereum keyfiles, facilitating import, export, and password change.
+
+=item * Sign L<Blockchain::Ethereum::Transaction> transactions.
+
+=item * Private key and seed generation through L<Crypt::PRNG>
+
+=item * Support for BIP44 for hierarchical deterministic wallets and key derivation.
+
+=back
 
 =head1 SYNOPSIS
-
-Collection of utilities for keystore management
-
-Examples:
 
 Generating a new address and writing it to a keyfile:
 
@@ -66,20 +72,6 @@ Export private key:
     # private key bytes
     print $keyfile->private_key->export;
 
-=head1 AUTHOR
-
-Reginaldo Costa, C<< <refeco at cpan.org> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to L<https://github.com/refeco/perl-ethereum-keystore>
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2023 by REFECO.
-
-This is free software, licensed under:
-
-  The MIT License
-
 =cut
+
+1;
