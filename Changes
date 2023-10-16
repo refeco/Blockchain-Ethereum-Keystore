@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.008     2023-10-15 23:49:18-03:00 America/Sao_Paulo
     [Bug fix]
     - add perlcritic and perltidy to build
 0.007     2023-10-14 22:30:36-03:00 America/Sao_Paulo
