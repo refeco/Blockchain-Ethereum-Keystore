@@ -17,7 +17,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.026000",
   "NAME" => "Blockchain::Ethereum::Keystore",
   "PREREQ_PM" => {
-    "Bitcoin::Crypto" => "2.000",
+    "Bitcoin::Crypto" => "2.001",
     "Crypt::Perl" => "0.38",
     "Crypt::ScryptKDF" => "0.010",
     "CryptX" => "0.078",
@@ -41,7 +41,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Bitcoin::Crypto" => "2.000",
+  "Bitcoin::Crypto" => "2.001",
   "Crypt::Perl" => "0.38",
   "Crypt::ScryptKDF" => "0.010",
   "CryptX" => "0.078",
