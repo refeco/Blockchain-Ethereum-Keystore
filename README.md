@@ -36,7 +36,7 @@ Importing a keyfile and changing the password:
 my $keyfile = Blockchain::Ethereum::Keystore::Keyfile->new;
 my $password = "old_password";
 $keyfile->import_file("...", $password);
-$keyfile->change_password($password, "newpassword");
+$keyfile->change_password($password, "new_password");
 $keyfile->write_to_file("...");
 ```
 
