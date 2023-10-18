@@ -44,7 +44,7 @@ field $_hdw_handler :reader(_hdw_handler) :writer(set_hdw_handler);
 
 ADJUST {
     if ($self->seed) {
-        $self->set_hdw_handler(btc_extprv->from_hex_seed(unpack "H*", $self->seed));
+        $self->set_hdw_handler(btc_extprv->from_seed($self->seed));
     } elsif ($self->mnemonic) {
         $self->set_hdw_handler(btc_extprv->from_mnemonic($self->mnemonic, $self->salt));
     }
@@ -52,7 +52,7 @@ ADJUST {
     unless ($self->_hdw_handler) {
         # if the seed is not given, generate a new one
         $self->set_seed(random_bytes(64));
-        $self->set_hdw_handler(btc_extprv->from_hex_seed(unpack "H*", $self->seed));
+        $self->set_hdw_handler(btc_extprv->from_seed($self->seed));
     }
 }
 
@@ -86,11 +86,7 @@ method derive_key ($index, $account = 0, $purpose = 44, $coin_type = 60, $change
         change    => $change,
     );
 
-    return Blockchain::Ethereum::Keystore::Key->new(
-        private_key => pack "H*",
-        $self->_hdw_handler->derive_key($path)->get_basic_key->to_hex
-    );
-
+    return Blockchain::Ethereum::Keystore::Key->new(private_key => $self->_hdw_handler->derive_key($path)->get_basic_key->to_serialized);
 }
 
 1;
