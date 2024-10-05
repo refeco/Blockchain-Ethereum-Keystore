@@ -1,4 +1,10 @@
 use v5.26;
+
+use strict;
+use warnings;
+no indirect;
+use feature 'signatures';
+
 use Object::Pad ':experimental(init_expr)';
 
 package Blockchain::Ethereum::Keystore::Keyfile;
