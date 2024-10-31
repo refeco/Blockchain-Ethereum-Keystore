@@ -7,54 +7,61 @@ use 5.026000;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-    "ABSTRACT"           => "Ethereum wallet management utilities",
-    "AUTHOR"             => "Reginaldo Costa <refeco\@cpan.org>",
-    "CONFIGURE_REQUIRES" => {"ExtUtils::MakeMaker" => 0},
-    "DISTNAME"           => "Blockchain-Ethereum-Keystore",
-    "LICENSE"            => "mit",
-    "MIN_PERL_VERSION"   => "5.026000",
-    "NAME"               => "Blockchain::Ethereum::Keystore",
-    "PREREQ_PM"          => {
-        "Bitcoin::Crypto"  => "2.001",
-        "Crypt::Perl"      => "0.38",
-        "Crypt::ScryptKDF" => "0.010",
-        "CryptX"           => "0.078",
-        "File::Slurp"      => "9999.32",
-        "JSON::MaybeXS"    => "1.004005",
-        "Net::SSH::Perl"   => "2.14"
-    },
-    "TEST_REQUIRES" => {
-        "File::Spec"      => 0,
-        "IO::Handle"      => 0,
-        "IPC::Open3"      => 0,
-        "Test::CheckDeps" => "0.010",
-        "Test::More"      => "0.94"
-    },
-    "VERSION" => "0.011",
-    "test"    => {"TESTS" => "t/*.t"});
-
-my %FallbackPrereqs = (
-    "Bitcoin::Crypto"  => "2.001",
-    "Crypt::Perl"      => "0.38",
+  "ABSTRACT" => "Ethereum wallet management utilities",
+  "AUTHOR" => "Reginaldo Costa <refeco\@cpan.org>",
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => 0
+  },
+  "DISTNAME" => "Blockchain-Ethereum-Keystore",
+  "LICENSE" => "mit",
+  "MIN_PERL_VERSION" => "5.026000",
+  "NAME" => "Blockchain::Ethereum::Keystore",
+  "PREREQ_PM" => {
+    "Bitcoin::Crypto" => "2.001",
+    "Crypt::Perl" => "0.38",
     "Crypt::ScryptKDF" => "0.010",
-    "CryptX"           => "0.078",
-    "File::Slurp"      => "9999.32",
-    "File::Spec"       => 0,
-    "IO::Handle"       => 0,
-    "IPC::Open3"       => 0,
-    "JSON::MaybeXS"    => "1.004005",
-    "Net::SSH::Perl"   => "2.14",
-    "Test::CheckDeps"  => "0.010",
-    "Test::More"       => "0.94"
+    "CryptX" => "0.078",
+    "File::Slurp" => "9999.32",
+    "JSON::MaybeXS" => "1.004005",
+    "Net::SSH::Perl" => "2.14"
+  },
+  "TEST_REQUIRES" => {
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
+    "Test::CheckDeps" => "0.010",
+    "Test::More" => "0.94"
+  },
+  "VERSION" => "0.011",
+  "test" => {
+    "TESTS" => "t/*.t"
+  }
 );
 
-unless (eval { ExtUtils::MakeMaker->VERSION(6.63_03) }) {
-    delete $WriteMakefileArgs{TEST_REQUIRES};
-    delete $WriteMakefileArgs{BUILD_REQUIRES};
-    $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
+
+my %FallbackPrereqs = (
+  "Bitcoin::Crypto" => "2.001",
+  "Crypt::Perl" => "0.38",
+  "Crypt::ScryptKDF" => "0.010",
+  "CryptX" => "0.078",
+  "File::Slurp" => "9999.32",
+  "File::Spec" => 0,
+  "IO::Handle" => 0,
+  "IPC::Open3" => 0,
+  "JSON::MaybeXS" => "1.004005",
+  "Net::SSH::Perl" => "2.14",
+  "Test::CheckDeps" => "0.010",
+  "Test::More" => "0.94"
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
-    unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
 WriteMakefile(%WriteMakefileArgs);
