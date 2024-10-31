@@ -1,15 +1,10 @@
-use v5.26;
+package Blockchain::Ethereum::Keystore::Address;
 
+use v5.26;
 use strict;
 use warnings;
-no indirect;
-use feature 'signatures';
 
-use Object::Pad;
-
-package Blockchain::Ethereum::Keystore::Address;
-class Blockchain::Ethereum::Keystore::Address;
-
+# ABSTRACT: Ethereum address abstraction
 # AUTHORITY
 # VERSION
 
@@ -31,11 +26,27 @@ Generate a new address:
 use Carp;
 use Crypt::Digest::Keccak256 qw(keccak256_hex);
 
-field $address :reader :writer :param;
+sub new {
+    my ($class, %params) = @_;
 
-ADJUST {
+    my $address = $params{address};
+    croak "Required param address not given" unless $address;
 
-    my $unprefixed = $self->address =~ s/^0x//r;
+    my $self = bless {}, $class;
+    $self->{address} = $address;
+    $self->_checksum;
+
+    return $self;
+}
+
+sub address {
+    return shift->{address};
+}
+
+sub _checksum {
+    my ($self) = shift;
+
+    my $unprefixed = $self->no_prefix;
 
     croak 'Invalid address format' unless length($unprefixed) == 40;
 
@@ -45,16 +56,24 @@ ADJUST {
 
     $checksummed_chars .= hex $hashed_chars[$_] >= 8 ? uc $address_chars[$_] : lc $address_chars[$_] for 0 .. length($unprefixed) - 1;
 
-    $self->set_address($checksummed_chars);
+    $self->{address} = "0x$checksummed_chars";
+    return $self;
 }
 
 =method no_prefix
 
-Returns the checksummed address without the 0x prefix
+Removes the 0x prefix
+
+=over 4
+
+=back
+
+Returns the address string without the 0x prefix
 
 =cut
 
-method no_prefix {
+sub no_prefix {
+    my $self = shift;
 
     my $unprefixed = $self->address =~ s/^0x//r;
     return $unprefixed;
@@ -72,10 +91,9 @@ This function will be called as the default stringification method
 
 =cut
 
-method to_string {
-
-    return $self->address if $self->address =~ /^0x/;
-    return '0x' . $self->address;
+sub to_string {
+    my $self = shift;
+    return $self->address;
 }
 
 1;

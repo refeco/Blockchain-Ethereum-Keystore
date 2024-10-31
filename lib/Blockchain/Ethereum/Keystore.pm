@@ -1,16 +1,10 @@
-use v5.26;
+package Blockchain::Ethereum::Keystore;
 
+use v5.26;
 use strict;
 use warnings;
-no indirect;
-use feature 'signatures';
 
-use Object::Pad;
 # ABSTRACT: Ethereum wallet management utilities
-
-package Blockchain::Ethereum::Keystore;
-class Blockchain::Ethereum::Keystore;
-
 # AUTHORITY
 # VERSION
 
