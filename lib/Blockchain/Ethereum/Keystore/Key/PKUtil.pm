@@ -1,15 +1,8 @@
-use v5.26;
+package Blockchain::Ethereum::Keystore::Key::PKUtil;
 
+use v5.26;
 use strict;
 use warnings;
-no indirect;
-use feature 'signatures';
-
-use Object::Pad;
-
-package Blockchain::Ethereum::Keystore::Key::PKUtil;
-class Blockchain::Ethereum::Keystore::Key::PKUtil
-    :isa(Crypt::Perl::ECDSA::PrivateKey);
 
 # AUTHORITY
 # VERSION
@@ -24,6 +17,8 @@ the transaction.
 You don't want to use this directly, use instead L<Blockchain::Ethereum::Keystore::Key>
 
 =cut;
+
+use parent "Crypt::Perl::ECDSA::PrivateKey";
 
 use Carp;
 
@@ -41,7 +36,8 @@ L<Crypt::Perl::BigInt> r, L<Crypt::Perl::BigInt> s, uint y_parity
 
 =cut
 
-method _sign ($message) {
+sub _sign {
+    my ($self, $message) = @_;
 
     my $dgst = Crypt::Perl::BigInt->from_bytes($message);
 

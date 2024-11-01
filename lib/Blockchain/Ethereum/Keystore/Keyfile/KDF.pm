@@ -1,14 +1,8 @@
-use v5.26;
+package Blockchain::Ethereum::Keystore::Keyfile::KDF;
 
+use v5.26;
 use strict;
 use warnings;
-no indirect;
-use feature 'signatures';
-
-use Object::Pad;
-
-package Blockchain::Ethereum::Keystore::Keyfile::KDF;
-class Blockchain::Ethereum::Keystore::Keyfile::KDF;
 
 # AUTHORITY
 # VERSION
@@ -16,29 +10,66 @@ class Blockchain::Ethereum::Keystore::Keyfile::KDF;
 use Crypt::KeyDerivation qw(pbkdf2);
 use Crypt::ScryptKDF     qw(scrypt_raw);
 
-field $algorithm :reader :writer :param;
-field $dklen :reader :writer :param;
-field $n :reader :writer :param   //= undef;
-field $p :reader :writer :param   //= undef;
-field $r :reader :writer :param   //= undef;
-field $prf :reader :writer :param //= undef;
-field $c :reader :writer :param   //= undef;
-field $salt :reader :writer :param;
+sub new {
+    my ($class, %params) = @_;
 
-method decode ($password) {
+    my $self = bless {}, $class;
+    for (qw(algorithm dklen n p r prf c salt)) {
+        $self->{$_} = $params{$_} if exists $params{$_};
+    }
+
+    return $self;
+}
+
+sub algorithm {
+    return shift->{algorithm};
+}
+
+sub dklen {
+    return shift->{dklen};
+}
+
+sub n {
+    return shift->{n};
+}
+
+sub p {
+    return shift->{p};
+}
+
+sub r {
+    return shift->{r};
+}
+
+sub prf {
+    return shift->{prf};
+}
+
+sub c {
+    return shift->{c};
+}
+
+sub salt {
+    return shift->{salt};
+}
+
+sub decode {
+    my ($self, $password) = @_;
 
     my $kdf_function = '_decode_kdf_' . $self->algorithm;
     return $self->$kdf_function($password);
 }
 
-method _decode_kdf_pbkdf2 ($password) {
+sub _decode_kdf_pbkdf2 {
+    my ($self, $password) = @_;
 
     my $derived_key = pbkdf2($password, pack("H*", $self->salt), $self->c, 'SHA256', $self->dklen);
 
     return $derived_key;
 }
 
-method _decode_kdf_scrypt ($password) {
+sub _decode_kdf_scrypt {
+    my ($self, $password) = @_;
 
     my $derived_key = scrypt_raw(
         $password,    #
